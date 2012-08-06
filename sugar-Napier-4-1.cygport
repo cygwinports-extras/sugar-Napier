@@ -1,0 +1,15 @@
+SUGAR_TYPE="Honey"
+inherit sugar
+
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	if [ ! -f setup.py ]
+	then
+		cat > setup.py <<_EOF
+#!/usr/bin/env python
+from sugar.activity import bundlebuilder
+bundlebuilder.start()
+_EOF
+	fi
+}
